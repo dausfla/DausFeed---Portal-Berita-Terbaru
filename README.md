@@ -1,6 +1,6 @@
  # 📰 DausFeed - Portal Berita Terbaru
 
-**DausFeed** adalah aplikasi portal berita online yang menyajikan informasi terbaru dari berbagai kategori seperti **Teknologi**, **Olahraga**, **Bisnis**, **Hiburan**, dan **Kesehatan**.  
+**DausFeed** adalah portal berita online yang menyajikan informasi terbaru dari berbagai kategori seperti **Teknologi**, **Olahraga**, **Bisnis**, **Hiburan**, dan **Kesehatan**.  
 Dibangun menggunakan **HTML**, **Bootstrap**, **JavaScript**, dan **jQuery**, aplikasi ini menampilkan berita secara **real-time** melalui integrasi dengan **NewsAPI**.
 
 ---
