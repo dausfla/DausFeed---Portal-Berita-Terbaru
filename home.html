@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -7,106 +7,45 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
   <style>
     :root {
       --cat-primary: #f0a500;
       --cat-secondary: #3c2a21;
       --light-bg: #fdfaf6;
-      --dark-bg: #1e1e1e;
       --light-text: #212529;
-      --dark-text: #f8f9fa;
     }
-
     body {
       font-family: 'Poppins', sans-serif;
       background-color: var(--light-bg);
       color: var(--light-text);
-      transition: background-color 0.3s ease, color 0.3s ease;
       padding-top: 70px;
     }
-
-    body.dark-mode {
-      background-color: var(--dark-bg);
-      color: var(--dark-text);
-    }
-
-    .navbar {
-      background-color: var(--cat-secondary) !important;
-    }
-
-    .navbar-brand {
-      font-weight: 700;
-      color: var(--cat-primary) !important;
-      display: flex;
-      align-items: center;
-    }
-
-    .navbar-brand img {
-      height: 40px;
-      margin-right: 10px;
-      border-radius: 8px;
-    }
-
-    .btn-primary {
-      background-color: var(--cat-primary);
-      border: none;
-    }
-
-    .btn-primary:hover {
-      background-color: #e09900;
-    }
-
+    .navbar { background-color: var(--cat-secondary) !important; }
+    .navbar-brand { font-weight: 700; color: var(--cat-primary) !important; }
+    .nav-link { color: #fff !important; transition: 0.3s; }
+    .nav-link:hover, .nav-link.active { color: var(--cat-primary) !important; }
     .hero {
-      text-align: center;
-      padding: 100px 20px;
+      text-align: center; padding: 100px 20px;
       background: linear-gradient(to right, #f0a500, #f4c95d);
+      color: var(--cat-secondary); border-radius: 20px; margin-top: 20px;
+    }
+    .category-buttons .btn {
+      margin: 8px; font-weight: 600;
+      border-radius: 25px;
+      border: 2px solid var(--cat-primary);
       color: var(--cat-secondary);
-      border-radius: 20px;
-      margin-top: 20px;
     }
-
-    .hero h1 {
-      font-weight: 700;
+    .category-buttons .btn:hover {
+      background-color: var(--cat-primary); color: var(--cat-secondary);
     }
-
-    .section-title {
-      margin-top: 60px;
-      font-weight: 700;
-      text-align: center;
-    }
-
-    .card {
-      border: none;
-      border-radius: 20px;
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .footer {
-      background-color: var(--cat-secondary);
-      color: #fff;
-      margin-top: 50px;
-      padding: 20px 0;
-    }
-
-    .footer a {
-      color: var(--cat-primary);
-      text-decoration: none;
-    }
+    .footer { background-color: var(--cat-secondary); color: #fff; margin-top: 50px; padding: 20px 0; }
   </style>
 </head>
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
     <div class="container">
-      <a class="navbar-brand" href="home.html">
-  DausFeed
-  </a>
-
+      <a class="navbar-brand" href="home.html">DausFeed</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -119,11 +58,31 @@
     </div>
   </nav>
 
+  <!-- Hero -->
   <section class="hero">
-    <h1>Welcome To Daus Feed</h1>
-    <p class="lead mt-3">Portal berita menyajikan berita Terbaru, Terkini Indonesia seputar nasional, 
-        politik, ekonomi, internasional, olahraga, teknologi, hiburan, gaya hidup.</p>
-    <a href="index.html" class="btn btn-primary btn-lg mt-3 rounded-pill">Lihat Berita Terbaru</a>
+    <h1>Welcome to Daus Feed</h1>
+    <p class="lead mt-3">Portal berita menyajikan berita Terbaru seputar nasional, politik, ekonomi, olahraga, teknologi, hiburan, dan gaya hidup.</p>
+    <a href="index.html" class="btn btn-dark btn-lg mt-3 rounded-pill shadow-sm">
+      <i class="fas fa-arrow-right me-2"></i> Lihat Berita Terbaru
+    </a>
   </section>
 
- 
+  <!-- Kategori -->
+  <section class="container text-center mt-5">
+    <h2 class="fw-bold mb-4">Jelajahi Berdasarkan Kategori</h2>
+    <div class="category-buttons">
+      <a href="index.html?category=teknologi" class="btn btn-outline-dark">Teknologi</a>
+      <a href="index.html?category=olahraga" class="btn btn-outline-dark">Olahraga</a>
+      <a href="index.html?category=bisnis" class="btn btn-outline-dark">Bisnis</a>
+      <a href="index.html?category=politik" class="btn btn-outline-dark">Politik</a>
+      <a href="index.html?category=kesehatan" class="btn btn-outline-dark">Kesehatan</a>
+    </div>
+  </section>
+
+  <footer class="footer text-center">
+    <p class="mb-0">© 2025 DausFeed | Portal Berita Terkini</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
