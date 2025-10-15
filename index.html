@@ -22,32 +22,61 @@
       font-family: 'Poppins', sans-serif;
       background-color: var(--light-bg);
       color: var(--light-text);
-      padding-top: 70px;
       transition: all 0.4s ease;
+      padding-top: 70px;
     }
     body.dark-mode { background-color: var(--dark-bg); color: var(--dark-text); }
-    .navbar { background-color: var(--cat-secondary) !important; }
+
+    .navbar { background-color: var(--cat-secondary) !important; transition: 0.3s; }
     .navbar-brand { font-weight: 700; color: var(--cat-primary) !important; }
     .nav-link { color: #fff !important; transition: 0.3s; }
     .nav-link:hover, .nav-link.active { color: var(--cat-primary) !important; }
+
+    .toggle-mode {
+      background: transparent;
+      border: 2px solid var(--cat-primary);
+      color: var(--cat-primary);
+      border-radius: 50%;
+      width: 38px; height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .toggle-mode:hover {
+      background-color: var(--cat-primary);
+      color: var(--cat-secondary);
+    }
+
     .category-buttons .btn {
-      margin: 8px; font-weight: 600; border-radius: 25px;
-      border: 2px solid var(--cat-primary); color: var(--cat-secondary);
+      margin: 8px;
+      font-weight: 600;
+      border-radius: 25px;
+      border: 2px solid var(--cat-primary);
+      color: var(--cat-secondary);
+      background: transparent;
+      transition: 0.3s;
     }
     .category-buttons .btn:hover {
-      background-color: var(--cat-primary); color: var(--cat-secondary);
+      background-color: var(--cat-primary);
+      color: var(--cat-secondary);
     }
-    .card { border: none; border-radius: 16px; background-color: var(--card-bg-light);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); overflow: hidden; transition: all 0.35s ease; }
-    .card:hover { transform: translateY(-6px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); }
-    .card-img-top { height: 220px; object-fit: cover; }
+    body.dark-mode .category-buttons .btn { color: var(--dark-text); border-color: var(--cat-primary); }
+    body.dark-mode .category-buttons .btn:hover { background-color: var(--cat-primary); color: var(--cat-secondary); }
+
+    .card {
+      border: none; border-radius: 16px;
+      background-color: var(--card-bg-light);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+    .card:hover { transform: translateY(-5px); }
     body.dark-mode .card { background-color: var(--card-bg-dark); color: var(--dark-text); }
-    body.dark-mode .card-text { color: #ccc; }
+
     .footer { background-color: var(--cat-secondary); color: #fff; margin-top: 60px; padding-top: 40px; }
+    body.dark-mode .footer { background-color: #000; }
   </style>
 </head>
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
     <div class="container">
       <a class="navbar-brand" href="home.html">DausFeed</a>
@@ -58,25 +87,28 @@
         <ul class="navbar-nav ms-auto align-items-center">
           <li class="nav-item"><a class="nav-link" href="home.html"><i class="fas fa-home me-1"></i> Home</a></li>
           <li class="nav-item"><a class="nav-link active" href="index.html"><i class="fas fa-newspaper me-1"></i> Berita</a></li>
+          <li class="nav-item ms-3">
+            <button id="modeToggle" class="toggle-mode" title="Ganti Mode">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Main -->
   <main class="container text-center">
-    <header class="hero-section mt-4 mb-3">
-      <h1 class="display-5 fw-bold">Berita Ter Update</h1>
+    <header class="mt-4 mb-3">
+      <h1 class="display-5 fw-bold">Berita Terupdate</h1>
       <p class="lead text-muted">Temukan berita terbaru dan terhangat saat ini</p>
     </header>
 
-    <!-- Kategori -->
     <div class="category-buttons mb-4">
-      <button class="btn btn-outline-dark category-link" data-category="teknologi">Teknologi</button>
-      <button class="btn btn-outline-dark category-link" data-category="olahraga">Olahraga</button>
-      <button class="btn btn-outline-dark category-link" data-category="bisnis">Bisnis</button>
-      <button class="btn btn-outline-dark category-link" data-category="politik">Politik</button>
-      <button class="btn btn-outline-dark category-link" data-category="kesehatan">Kesehatan</button>
+      <button class="btn category-link" data-category="teknologi">Teknologi</button>
+      <button class="btn category-link" data-category="olahraga">Olahraga</button>
+      <button class="btn category-link" data-category="bisnis">Bisnis</button>
+      <button class="btn category-link" data-category="politik">Politik</button>
+      <button class="btn category-link" data-category="kesehatan">Kesehatan</button>
     </div>
 
     <form id="searchForm" class="mb-4">
@@ -150,19 +182,24 @@
         });
       }
 
-      // Event search
+      // Search & category
       $('#searchForm').on('submit', e=>{
         e.preventDefault();
         const q=$('#query').val().trim();
         if(q) fetchNews(q); else showError("Masukkan kata kunci terlebih dahulu.");
       });
+      $('.category-link').on('click', function(){ fetchNews($(this).data('category')); });
 
-      // Klik kategori
-      $('.category-link').on('click', function(){
-        fetchNews($(this).data('category'));
+      // Dark mode
+      const toggle = document.getElementById('modeToggle');
+      toggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const icon = toggle.querySelector('i');
+        icon.classList.toggle('fa-moon');
+        icon.classList.toggle('fa-sun');
       });
 
-      // Deteksi query category dari URL
+      // Load kategori dari URL
       const params = new URLSearchParams(window.location.search);
       const category = params.get('category');
       fetchNews(category || 'Indonesia');
