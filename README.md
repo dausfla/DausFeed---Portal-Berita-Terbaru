@@ -61,10 +61,4 @@ Dibangun menggunakan **HTML**, **Bootstrap**, **JavaScript**, dan **jQuery**, ap
 ✅ **Navigasi Kategori Berita** yang interaktif  
 
 ---
-
-## 🧩 Cara Menjalankan Proyek
-
-1. **Clone repository:**
-   ```bash
-   git clone https://github.com/dausfla/DausFeed---Portal-Berita-Terbaru.git
-   cd DausFeed---Portal-Berita-Terbaru
+TERIMA KASIH
